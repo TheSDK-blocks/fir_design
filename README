@@ -1,0 +1,26 @@
+Readme added 12.02.2018 by Marko Kosunen
+These are the artifacts from distant past.
+
+Brief howto:
+
+For ISI-sensitive filters, like root-raised cosine, use 
+1) lagrfdes to perform lagrange optimization to
+trade-off ISI and stop-band attenuation. Check filteralgdemo and filteralgdemo2
+for example.
+
+>ideal=rrcos(0.22,2,1001);
+>c=lagrfdes(ideal,37,0.5,0.61,2,10^(75/10),10^(45/10));
+
+2) Convert decimal prototypes to csd-filter with csdc
+a) first scale the prototype maximum to 1.
+b) Then apply csdc to it.
+c) ) If needed, convert back to decimal with csd2dec
+
+>d=c/max(abs(c))
+>e=csdc(d,5,11,1)
+>csd2dec(e)
+
+Check
+lib.tkk.fi/Diss/2006/isbn9512284103/isbn9512284103.pdf
+Chapter 4 for further details
+
